@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CozyBoard 🌸</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>CozyBoard 🌷</h1>
+    <input type="text" id="searchInput" placeholder="Search topics..." />
+    <button id="addTopicBtn">+ New Topic</button>
+  </header>
+
+  <main id="topicsContainer"></main>
+
+  <!-- Add Topic Modal -->
+  <div id="addTopicModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Create a New Topic</h2>
+      <input id="topicTitle" type="text" placeholder="Title" />
+      <textarea id="topicBody" placeholder="Write something cozy..."></textarea>
+      <input id="topicKeywords" type="text" placeholder="Keywords (comma separated)" />
+      <button id="saveTopicBtn">Save Topic</button>
+      <button class="closeModal">Cancel</button>
+    </div>
+  </div>
+
+  <!-- View Topic Modal -->
+  <div id="viewTopicModal" class="modal hidden">
+    <div class="modal-content view">
+      <h2 id="modalTitle"></h2>
+      <div id="modalKeywords" class="keywords"></div>
+      <p id="modalBody"></p>
+
+      <div class="comments-section">
+        <h3>Comments</h3>
+        <div id="commentsContainer"></div>
+        <div class="comment-input">
+          <input id="userName" type="text" placeholder="Your name" />
+          <textarea id="commentText" placeholder="Add a comment..."></textarea>
+          <button id="addCommentBtn">Post</button>
+        </div>
+      </div>
+      <button class="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore-compat.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
