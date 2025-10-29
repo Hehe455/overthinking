@@ -436,101 +436,93 @@ body.modal-open {
     grid-template-columns: 1fr;
   }
 }
-/* ====== Reply Section ====== */
-.reply-section {
-  margin-top: 12px;
-  margin-left: 25px;
-  padding: 12px 14px;
-  background: #fff9f9;
-  border-left: 4px solid var(--accent-color);
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(255, 183, 197, 0.15);
-  transition: var(--transition);
+/* ================================
+   Add Topic Modal Styles
+================================ */
+#addTopicModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 245, 250, 0.9);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
-.reply-section:hover {
-  background: #fff3f5;
+#addTopicModal .modal-content {
+  background: #fff0f5;
+  border: 2px solid #ffc6d9;
+  border-radius: 20px;
+  padding: 25px;
+  width: 420px;
+  box-shadow: 0 8px 24px rgba(255, 182, 193, 0.4);
+  text-align: center;
+  animation: popIn 0.3s ease;
 }
 
-.reply {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-bottom: 10px;
-  border-bottom: 1px dashed #f2c7d2;
-}
-
-.reply:last-child {
-  border-bottom: none;
-}
-
-.reply-author {
+#addTopicModal h2 {
+  color: #ff4b91;
+  margin-bottom: 15px;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
-  color: #444;
-  font-family: 'Quicksand', sans-serif;
 }
 
-.reply-text {
-  font-size: 0.95rem;
-  color: var(--text-color);
-  line-height: 1.5;
-}
-
-.reply-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 4px;
-}
-
-.reply-actions button {
-  background: var(--accent2-color);
-  border: none;
-  border-radius: 8px;
-  padding: 4px 10px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.reply-actions button:hover {
-  background: #9fe1ff;
-}
-
-/* Reply form inside comment */
-.reply-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.reply-form textarea {
+#addTopicModal input,
+#addTopicModal textarea {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  border: 2px solid #ffd6e3;
   border-radius: 10px;
-  padding: 8px;
-  border: 1.5px solid #ccc;
-  resize: vertical;
-  min-height: 60px;
-  font-size: 0.9rem;
-  transition: var(--transition);
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  background: #fff;
+  color: #333;
+  transition: 0.2s ease;
 }
 
-.reply-form textarea:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px rgba(255, 183, 197, 0.25);
+#addTopicModal input:focus,
+#addTopicModal textarea:focus {
+  border-color: #ff7bbf;
+  outline: none;
+  box-shadow: 0 0 4px #ffb8dc;
 }
 
-.reply-form button {
-  align-self: flex-end;
-  padding: 6px 14px;
-  background: var(--accent-color);
+#addTopicModal button {
+  background: linear-gradient(135deg, #ff93c2, #ffa8e1);
+  color: white;
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: var(--transition);
+  font-weight: 600;
+  transition: 0.25s ease;
 }
 
-.reply-form button:hover {
-  background: #ffa4b8;
+#addTopicModal button:hover {
+  background: linear-gradient(135deg, #ff74b3, #ff95d6);
+  transform: scale(1.05);
+}
+
+#addTopicModal .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #ff4b91;
+  cursor: pointer;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
