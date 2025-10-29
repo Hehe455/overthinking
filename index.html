@@ -3,53 +3,95 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CozyBoard 🌸</title>
+  <title>Lots of Yapping</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Firebase SDKs (Compat Version for Firestore) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <header>
-    <h1>CozyBoard 🌷</h1>
-    <input type="text" id="searchInput" placeholder="Search topics..." />
-    <button id="addTopicBtn">+ New Topic</button>
+    <h1>Lots of Yapping 💬</h1>
+    <div class="top-bar">
+      <input id="searchInput" type="text" placeholder="Search topics or type 'unread'..." />
+      <button id="addTopicBtn">+ Add Topic</button>
+    </div>
   </header>
 
-  <main id="topicsContainer"></main>
+  <main id="homeContainer">
+    <div class="topic-list" id="topicList">
+      <!-- Topics dynamically inserted here -->
+    </div>
+  </main>
 
   <!-- Add Topic Modal -->
-  <div id="addTopicModal" class="modal hidden">
-    <div class="modal-content">
-      <h2>Create a New Topic</h2>
-      <input id="topicTitle" type="text" placeholder="Title" />
-      <textarea id="topicBody" placeholder="Write something cozy..."></textarea>
-      <input id="topicKeywords" type="text" placeholder="Keywords (comma separated)" />
-      <button id="saveTopicBtn">Save Topic</button>
-      <button class="closeModal">Cancel</button>
+  <div id="addTopicModal" class="modal">
+    <div class="modal-box large">
+      <span class="close-btn" id="closeAddTopic">&times;</span>
+      <h2>Add a New Topic</h2>
+      <div class="modal-content">
+        <label for="topicTitle">Title</label>
+        <input id="topicTitle" type="text" placeholder="Enter a catchy title..." />
+
+        <label for="topicBody">Body</label>
+        <textarea id="topicBody" placeholder="Share your thoughts here..." rows="6"></textarea>
+
+        <label for="topicKeywords">Keywords (comma separated)</label>
+        <input id="topicKeywords" type="text" placeholder="e.g. cozy, pastel, fun" />
+
+        <button id="saveTopicBtn">Save Topic</button>
+      </div>
     </div>
   </div>
 
   <!-- View Topic Modal -->
-  <div id="viewTopicModal" class="modal hidden">
-    <div class="modal-content view">
-      <h2 id="modalTitle"></h2>
-      <div id="modalKeywords" class="keywords"></div>
-      <p id="modalBody"></p>
-
-      <div class="comments-section">
-        <h3>Comments</h3>
-        <div id="commentsContainer"></div>
-        <div class="comment-input">
-          <input id="userName" type="text" placeholder="Your name" />
-          <textarea id="commentText" placeholder="Add a comment..."></textarea>
-          <button id="addCommentBtn">Post</button>
-        </div>
+  <div id="topicModal" class="modal">
+    <div class="modal-box" id="topicModalBox">
+      <span class="close-btn" id="closeTopicModal">&times;</span>
+      <div class="modal-content" id="topicModalContent">
+        <h2 class="topic-modal-title" id="modalTopicTitle"></h2>
+        <div class="topic-meta" id="modalTopicMeta"></div>
+        <div class="topic-body" id="modalTopicBody"></div>
       </div>
-      <button class="closeModal">Close</button>
+
+      <section class="comment-section">
+        <div class="comment-header">
+          <h3>Comments</h3>
+          <button class="quote-btn" id="quoteBtn">Quote</button>
+        </div>
+
+        <!-- Reference block appears here when quoting -->
+        <div id="referencePreview"></div>
+
+        <div id="commentList" class="comment-list">
+          <!-- Threaded comments inserted here -->
+        </div>
+
+        <form id="commentForm" class="comment-form">
+          <textarea id="commentInput" placeholder="Type your comment..." required></textarea>
+          <button type="submit">Post</button>
+        </form>
+      </section>
     </div>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore-compat.js"></script>
+  <!-- Reference Selection Modal -->
+  <div id="referenceModal" class="reference-modal" style="display: none;">
+    <div class="reference-body-container">
+      <h3>Select Text to Quote</h3>
+      <div id="referenceBody" class="reference-body"></div>
+      <div class="reference-actions">
+        <button id="cancelReference">Cancel</button>
+        <button id="confirmReference">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- App Script (Loaded Last) -->
   <script src="index.js"></script>
 </body>
 </html>
